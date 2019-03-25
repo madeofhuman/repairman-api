@@ -1,24 +1,23 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/064071b18f5f78759a07/maintainability)](https://codeclimate.com/github/ProfJigsaw/repairman-api/maintainability)
+
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple repairman-api:
 
-Things you may want to cover:
+### Resources
+- Users
+- Cars
+- Quotes
 
-* Ruby version
+### To test this api
+- Clone this repository
+- cd into the `repairman-api` folder
+- Run the following on the terminal `rails s`
+- Hit the following routes:
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+### Happy hacking :rockets:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Official Jiggy Stamp:
+[![Jiggy|Stamp](https://svgshare.com/i/Bfm.svg)](https://github.com/ProfJigsaw)
