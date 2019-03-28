@@ -84,6 +84,4 @@ test:
 #
 production:
   <<: *default
-  database: repairman-prod
-  username: <%= ENV['REPAIRMAN-API_DATABASE_USERNAME'] %>
-  password: <%= ENV['REPAIRMAN-API_DATABASE_PASSWORD'] %>
+  database: ddca4hpkk45q46
