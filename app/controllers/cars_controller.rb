@@ -2,7 +2,7 @@ class CarsController < ApplicationController
   before_action :set_car, only: %i[show update destroy]
 
   def index
-    @cars = current_user.cars
+    @cars = current_user.cars.order('created_at desc')
     json_response(@cars)
   end
 
@@ -16,12 +16,12 @@ class CarsController < ApplicationController
   end
 
   def update
-    @todo.update(todo_params)
+    @car.update(todo_params)
     head :no_content
   end
 
   def destroy
-    @todo.destroy
+    @car.destroy
     head :no_content
   end
 
