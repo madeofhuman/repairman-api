@@ -3,6 +3,7 @@ class JsonWebToken
 
   def self.encode(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i
+    p "This is the secret key base: #{HMAC_SECRET}"
     JWT.encode(payload, HMAC_SECRET)
   end
 
