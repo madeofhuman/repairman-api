@@ -3,7 +3,8 @@ class CarsController < ApplicationController
 
   def index
     @cars = current_user.cars.order('created_at desc')
-    json_response(@cars)
+    # json_response(@cars)
+    render json: @cars, include: ['quotes'], status: :ok
   end
 
   def create
