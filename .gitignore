@@ -24,5 +24,3 @@
 
 # Ignore the coverage folder
 /coverage/*
-
-coverage/**
