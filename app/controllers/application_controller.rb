@@ -5,6 +5,10 @@ class ApplicationController < ActionController::API
   before_action :authorize_request
   attr_reader :current_user
 
+  def not_found
+    render json: {}, status: 404
+  end
+
   private
 
   def authorize_request

@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
+
+  match "*path", to: "application#not_found", via: :all
+
 end
