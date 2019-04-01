@@ -17,7 +17,7 @@ class CarsController < ApplicationController
   end
 
   def update
-    @car.update(todo_params)
+    @car.update(car_params)
     head :no_content
   end
 
