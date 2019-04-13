@@ -4,7 +4,7 @@ require 'rails_helper'
 include RequestSpecHelper
 
 RSpec.describe 'Cars API', type: :request do
-  # add todos owner
+  # add cars owner
   let(:user) { create(:user) }
   # initialize test data
   let!(:cars) { create_list(:car, 10, created_by: user.id) }
@@ -34,7 +34,7 @@ RSpec.describe 'Cars API', type: :request do
     before { get "/cars/#{car_id}", params: {}, headers: headers }
 
     context 'when the record exists' do
-      it 'returns the todo' do
+      it 'returns the car' do
         expect(json).not_to be_empty
         expect(json['id']).to eq(car_id)
       end
@@ -73,7 +73,7 @@ RSpec.describe 'Cars API', type: :request do
     context 'when the request is valid' do
       before { post '/cars', params: valid_attributes, headers: headers }
 
-      it 'creates a todo' do
+      it 'creates a car' do
         expect(json['make']).to eq('Bugatti')
       end
 
