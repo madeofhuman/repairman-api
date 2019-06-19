@@ -6,12 +6,16 @@ include RequestSpecHelper
 RSpec.describe 'Cars API', type: :request do
   # add cars owner
   let(:user) { create(:user) }
+  let(:user2) { create(:user) }
+  # add admin
+  let(:admin) { create(:user, :admin) }
   # initialize test data
   let!(:cars) { create_list(:car, 10, created_by: user.id) }
+  let!(:cars2) { create_list(:car, 10, created_by: user2.id) }
   let(:car_id) { cars.first.id }
 
   # authorize request
-  let(:headers) { valid_headers }
+  let(:headers) { valid_headers(user) }
 
   # Test suite for GET /cars
   describe 'GET /cars' do
@@ -45,7 +49,7 @@ RSpec.describe 'Cars API', type: :request do
     end
 
     context 'when the record does not exist' do
-      let(:car_id) { 100 }
+      let(:car_id) { 10320 }
 
       it 'returns a status code 404' do
         expect(response).to have_http_status(404)
@@ -120,6 +124,21 @@ RSpec.describe 'Cars API', type: :request do
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
+    end
+  end
+
+  describe 'GET /admin/cars' do
+    let(:headers) { valid_headers(admin) }
+
+    before { get '/admin/cars', params: {}, headers: headers }
+
+    it 'returns all cars in the system' do
+      expect(json).not_to be_empty
+      expect(json.count).to eq(20)
+    end
+
+    it 'returns status code 200' do
+      expect(response).to have_http_status(200)
     end
   end
 end

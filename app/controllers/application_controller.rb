@@ -14,4 +14,8 @@ class ApplicationController < ActionController::API
   def authorize_request
     @current_user = AuthorizeApiRequest.new(request.headers).call[:user]
   end
+
+  def require_admin
+    redirect_to cars_path unless current_user.admin?
+  end
 end
