@@ -40,11 +40,12 @@ class CarsController < ApplicationController
   end
 
   def render_car_json(car)
-    render json: car, include: {
-      'quotes': {
-        include: 'comments'
-      }
-    }, status: :ok
+    render json: car,
+      include: [
+        user: { except: [:password_digest, :admin] },
+        quotes: { include: :comments }
+      ],
+      status: :ok
   end
 
   def set_car
