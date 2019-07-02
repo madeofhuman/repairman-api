@@ -50,7 +50,17 @@ class QuotesController < ApplicationController
   end
 
   def render_quotes_json(quote)
-    render json: quote, include: ['comments'], status: :ok
+    render json: quote,
+      include: [
+        :car,
+        comments: {
+          include: [
+            user: { except: [:password_digest] }
+          ]
+        },
+        user: { except: [:password_digest] },
+      ],
+      status: :ok
   end
 
   def set_quote

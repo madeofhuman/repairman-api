@@ -5,11 +5,11 @@ class CommentsController < ApplicationController
 
   def index
     @comments = @quote.comments.order('created_at desc')
-    json_response(@comments)
+    render_comments_json(@comments)
   end
 
   def show
-    json_response(@comment)
+    render_comments_json(@comment)
   end
 
   def create
@@ -31,13 +31,17 @@ class CommentsController < ApplicationController
 
   def show_comment
     comment = Comment.find_by!(id: params[:id])
-    json_response(comment)
+    render_comments_json(comment)
   end
 
   private
 
   def comment_params
-    params.permit(:text)
+    params.permit(:text, :quote_id, :user_id)
+  end
+
+  def render_comments_json(comment)
+    render json: comment, include: ['user'], status: :ok
   end
 
   def set_quote
