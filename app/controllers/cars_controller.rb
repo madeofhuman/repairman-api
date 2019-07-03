@@ -43,7 +43,12 @@ class CarsController < ApplicationController
     render json: car,
       include: [
         user: { except: [:password_digest, :admin] },
-        quotes: { include: :comments }
+        quotes: {
+          include: [
+            :comments,
+            :car
+          ]
+        }
       ],
       status: :ok
   end
