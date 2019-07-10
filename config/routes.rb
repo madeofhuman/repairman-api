@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post 'admin/quotes/:quote_id/comments', to: 'comments#create'
   get 'admin/quotes/:quote_id/comments/:id', to: 'comments#show_comment'
 
+  get 'users/:id/quotes', to: 'quotes#user_quotes'
+
   match '*path', to: 'application#not_found', via: :all
 
 end

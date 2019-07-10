@@ -1,5 +1,5 @@
 class QuotesController < ApplicationController
-  before_action :set_car, except: %i[all_quotes show_quote]
+  before_action :set_car, except: %i[all_quotes show_quote user_quotes]
   before_action :set_quote, only: %i[show update destroy show_quote]
   before_action :require_admin, only: %i[all_quotes show_quote]
 
@@ -10,6 +10,11 @@ class QuotesController < ApplicationController
 
   def show
     render_quotes_json(@quote)
+  end
+
+  def user_quotes
+    @quotes = Quote.where(user_id: params['id'])
+    render_quotes_json(@quotes)
   end
 
   def create
