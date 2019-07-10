@@ -13,8 +13,13 @@ class QuotesController < ApplicationController
   end
 
   def create
-    quote = @car.quotes.create!(quote_params)
-    json_response(quote, :created)
+    params = {
+      car_id: quote_params['car_id'],
+      description: quote_params['description'],
+      user_id: current_user.id
+    }
+    quote = @car.quotes.create!(params)
+    render_quotes_json(quote, :created)
   end
 
   def update
@@ -42,14 +47,14 @@ class QuotesController < ApplicationController
   private
 
   def quote_params
-    params.permit(:description)
+    params.permit(:description, :car_id, :user_id)
   end
 
   def set_car
     @car = Car.find(params[:car_id])
   end
 
-  def render_quotes_json(quote)
+  def render_quotes_json(quote, status = :ok)
     render json: quote,
       include: [
         :car,
@@ -60,7 +65,7 @@ class QuotesController < ApplicationController
         },
         user: { except: [:password_digest] },
       ],
-      status: :ok
+      status: status
   end
 
   def set_quote
