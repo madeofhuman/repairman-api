@@ -38,7 +38,8 @@ This is a simple repairman-api:
 | | PUT | /cars/:id(.:format) | cars#update |
 | | DELETE | /cars/:id(.:format) | cars#destroy |
 | auth_login | POST | /auth/login(.:format)| authentication#authenticate |
-| signup | POST| /signup(.:format) | users#create|
+| signup | POST | /signup(.:format) | users#create |
+| user_quotes | GET | /users/:id/quotes(.:format) | quotes#user_quotes |
 | admin_cars | GET | /admin/cars(.:format) | cars#all_cars |
 | admin_quotes | GET | /admin/quotes(.:format) | quotes#all_quotes |
 | | GET | /admin/quotes/:id(.:format) | quotes#show_quote |
