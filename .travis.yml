@@ -14,7 +14,7 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - psql -c 'create database repairman-api_test;' -U postgres
-  - bundle exec rake db:create
+  - bundle exec rake db:migrate
 scripts:
   - bundle exec rspec spec
 after_script:
